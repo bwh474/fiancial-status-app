@@ -29,10 +29,6 @@ body {
 }
 main { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 48px; }
 .status-panel {
-    display: grid;
-    grid-template-columns: minmax(240px, 1fr) minmax(280px, 1.7fr);
-    gap: 24px;
-    align-items: stretch;
     border: 1px solid var(--line);
     border-top: 6px solid var(--amber);
     background: var(--panel);
@@ -43,7 +39,7 @@ main { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 48
 .status-value { margin: 0; font-size: clamp(42px, 8vw, 86px); line-height: 0.92; }
 .status-pill { display: inline-block; margin-top: 16px; padding: 8px 12px; border-radius: 999px; background: #f5dfc5; color: #6f3d0b; font: 700 13px/1 Verdana, sans-serif; text-transform: uppercase; }
 .status-score { margin: 14px 0 0; font-size: 22px; color: var(--muted); }
-.status-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.status-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
 .metric-card { border: 1px solid var(--line); background: #ffffff; padding: 16px; min-height: 128px; }
 .metric-card span { display: block; min-height: 38px; color: var(--muted); font: 700 13px/1.35 Verdana, sans-serif; }
 .metric-card strong { display: block; margin: 10px 0 6px; font-size: 32px; line-height: 1; }
@@ -63,8 +59,8 @@ summary { cursor: pointer; padding: 16px 4px; font: 700 17px/1.2 Verdana, sans-s
 .accordion-chart { border: 1px solid #e6eaee; padding: 14px; background: #fff; }
 .accordion-chart iframe { height: 340px; }
 @media (max-width: 860px) {
-    .status-panel { grid-template-columns: 1fr; padding: 18px; }
-    .status-summary { grid-template-columns: 1fr; }
+    .status-panel { padding: 18px; }
+    .status-summary { grid-template-columns: 1fr; margin-top: 18px; }
     main { width: min(100% - 20px, 1180px); padding-top: 12px; }
     .chart-section, .accordion-panel { padding: 12px; }
     .chart-section.compact iframe, .chart-section.standard iframe, .chart-section.timeline iframe, .accordion-chart iframe { height: 420px; }
@@ -78,7 +74,7 @@ summary { cursor: pointer; padding: 16px 4px; font: 700 17px/1.2 Verdana, sans-s
             <p class="status-label">Current household pressure status</p>
             <h1 class="status-value">Moderate/Mixed</h1>
             <span class="status-pill moderate-mixed">52.1 / 100</span>
-            <p class="status-score">Core score through 2026-04-01; context indicators are shown separately.</p>
+            <p class="status-score">Core score through 2026-04-01.</p>
         </div>
         <div class="status-summary"><article class="metric-card">
         <span>Debt Service Ratio</span>
