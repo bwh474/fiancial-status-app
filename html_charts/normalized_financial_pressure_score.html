@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "layer": [{"mark": {"type": "bar", "cornerRadiusEnd": 3}, "encoding": {"color": {"field": "pressure_percentile", "scale": {"domain": [0, 50, 100], "range": ["#2a9d8f", "#f4a261", "#d95f5f"]}, "title": "Higher = more pressure", "type": "quantitative"}, "tooltip": [{"field": "indicator", "title": "Indicator", "type": "nominal"}, {"field": "group", "title": "Role", "type": "nominal"}, {"field": "latest_value", "format": ".2f", "title": "Latest value (%)", "type": "quantitative"}, {"field": "latest_date", "format": "%Y-%m-%d", "title": "Latest date", "type": "temporal"}, {"field": "pressure_percentile", "format": ".1f", "title": "Normalized pressure score", "type": "quantitative"}, {"field": "pressure_level", "title": "Pressure level", "type": "nominal"}], "x": {"field": "pressure_percentile", "scale": {"domain": [0, 100]}, "title": "Normalized pressure score: 0 = low concern, 100 = high concern", "type": "quantitative"}, "y": {"field": "indicator", "sort": {"field": "pressure_percentile", "order": "descending"}, "title": null, "type": "nominal"}}}, {"mark": {"type": "text", "align": "right", "baseline": "middle", "color": "white", "dx": -6, "fontWeight": "bold"}, "encoding": {"text": {"field": "pressure_percentile", "format": ".1f", "type": "quantitative"}, "x": {"field": "pressure_percentile", "scale": {"domain": [0, 100]}, "title": "Normalized pressure score: 0 = low concern, 100 = high concern", "type": "quantitative"}, "y": {"field": "indicator", "sort": {"field": "pressure_percentile", "order": "descending"}, "title": null, "type": "nominal"}}}], "data": {"name": "data-7ce849a401303408d3fa7d360adf6c4d"}, "height": 250, "title": "Normalized Financial Pressure Score", "width": 430, "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json", "datasets": {"data-7ce849a401303408d3fa7d360adf6c4d": [{"series_code": "TDSP", "indicator": "Debt Service Ratio", "group": "Core household", "latest_date": "2025-10-01T00:00:00", "latest_value": 11.323096, "unit": "%", "historical_average": 12.458230988095238, "historical_median": 11.760107, "historical_min": 9.051426, "historical_max": 15.846367, "pressure_percentile": 27.380952380952383, "pressure_level": "lower", "pressure_direction": "higher_is_worse", "pressure_direction_label": "higher is worse", "indicator_order": 0, "latest_date_label": "2025-10-01", "latest_value_label": "11.32%", "pressure_percentile_label": "27.4"}, {"series_code": "PSAVERT", "indicator": "Personal Saving Rate", "group": "Core household", "latest_date": "2026-04-01T00:00:00", "latest_value": 2.6, "unit": "%", "historical_average": 8.375866336633663, "historical_median": 8.3, "historical_min": 1.4, "historical_max": 31.8, "pressure_percentile": 96.41089108910892, "pressure_level": "elevated", "pressure_direction": "lower_is_worse", "pressure_direction_label": "lower is worse", "indicator_order": 1, "latest_date_label": "2026-04-01", "latest_value_label": "2.60%", "pressure_percentile_label": "96.4"}, {"series_code": "DRCCLACBS", "indicator": "Credit Card Delinquency Rate", "group": "Core household", "latest_date": "2026-01-01T00:00:00", "latest_value": 2.92, "unit": "%", "historical_average": 3.6916312056737586, "historical_median": 3.85, "historical_min": 1.53, "historical_max": 6.77, "pressure_percentile": 32.62411347517731, "pressure_level": "lower", "pressure_direction": "higher_is_worse", "pressure_direction_label": "higher is worse", "indicator_order": 2, "latest_date_label": "2026-01-01", "latest_value_label": "2.92%", "pressure_percentile_label": "32.6"}, {"series_code": "UNRATE", "indicator": "Unemployment Rate", "group": "Economic context", "latest_date": "2026-05-01T00:00:00", "latest_value": 4.3, "unit": "%", "historical_average": 5.659361702127659, "historical_median": 5.5, "historical_min": 2.5, "historical_max": 14.8, "pressure_percentile": 25.744680851063826, "pressure_level": "lower", "pressure_direction": "higher_is_worse", "pressure_direction_label": "higher is worse", "indicator_order": 3, "latest_date_label": "2026-05-01", "latest_value_label": "4.30%", "pressure_percentile_label": "25.7"}, {"series_code": "FEDFUNDS", "indicator": "Federal Funds Rate", "group": "Economic context", "latest_date": "2026-05-01T00:00:00", "latest_value": 3.63, "unit": "%", "historical_average": 4.598203939745075, "historical_median": 4.27, "historical_min": 0.05, "historical_max": 19.1, "pressure_percentile": 42.5260718424102, "pressure_level": "moderate/mixed", "pressure_direction": "higher_is_worse", "pressure_direction_label": "higher is worse", "indicator_order": 4, "latest_date_label": "2026-05-01", "latest_value_label": "3.63%", "pressure_percentile_label": "42.5"}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
