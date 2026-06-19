@@ -8,8 +8,96 @@ the notebook during Heroku startup.
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlparse
+
 import mimetypes
 import os
+
+
+DASHBOARD_INTRO_HTML = """
+<section class="dashboard-intro" aria-label="Dashboard overview">
+  <h1>U.S. Household Financial Pressure Dashboard</h1>
+  <p class="intro-lede">
+    This dashboard summarizes whether U.S. households appear to be under financial pressure by combining direct household indicators with broader economic context from FRED data.
+  </p>
+  <div class="intro-grid">
+    <div class="intro-card">
+      <h2>Start here</h2>
+      <p>The core pressure score is based only on debt service, personal saving, and credit card delinquency. Higher pressure percentiles mean the latest reading is more stressful compared with that indicator's own history.</p>
+    </div>
+    <div class="intro-card">
+      <h2>Use context carefully</h2>
+      <p>Inflation, earnings, consumer sentiment, interest rates, unemployment, and housing affordability help explain the environment around households, but they do not change the core household pressure score.</p>
+    </div>
+    <div class="intro-card">
+      <h2>Suggested reading order</h2>
+      <p>Review the latest pressure percentiles first, then the normalized core score, then use the trend and timeline charts to understand how current conditions compare with history.</p>
+    </div>
+  </div>
+</section>
+"""
+
+DASHBOARD_INTRO_CSS = """
+<style>
+  body {
+    margin: 0;
+    background: #ffffff;
+    color: #202124;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .dashboard-intro {
+    max-width: 1120px;
+    margin: 0 auto 22px auto;
+    padding: 28px 28px 12px 28px;
+    box-sizing: border-box;
+  }
+  .dashboard-intro h1 {
+    margin: 0 0 8px 0;
+    font-size: 30px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .intro-lede {
+    margin: 0 0 18px 0;
+    max-width: 920px;
+    font-size: 16px;
+    line-height: 1.55;
+    color: #3c4043;
+  }
+  .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .intro-card {
+    border: 1px solid #dadce0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    background: #f8fafd;
+  }
+  .intro-card h2 {
+    margin: 0 0 6px 0;
+    font-size: 15px;
+    line-height: 1.25;
+  }
+  .intro-card p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #3c4043;
+  }
+  @media (max-width: 800px) {
+    .dashboard-intro {
+      padding: 20px 16px 8px 16px;
+    }
+    .dashboard-intro h1 {
+      font-size: 24px;
+    }
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+"""
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent
@@ -74,6 +162,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         content_type = mimetypes.guess_type(file_path.name)[0] or "application/octet-stream"
         if content_type == "text/html":
             content_type = "text/html; charset=utf-8"
+            if file_path.resolve() == DASHBOARD_FILE.resolve():
+                body = self._add_dashboard_intro(body)
 
         self.send_response(200)
         self.send_header("Content-Type", content_type)
@@ -83,6 +173,19 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
 
         if include_body:
             self.wfile.write(body)
+
+    def _add_dashboard_intro(self, html_body):
+        html = html_body.decode("utf-8")
+
+        if "dashboard-intro" not in html:
+            if "</head>" in html:
+                html = html.replace("</head>", f"{DASHBOARD_INTRO_CSS}\n</head>", 1)
+            if "<body>" in html:
+                html = html.replace("<body>", f"<body>\n{DASHBOARD_INTRO_HTML}", 1)
+            else:
+                html = f"{DASHBOARD_INTRO_CSS}\n{DASHBOARD_INTRO_HTML}\n{html}"
+
+        return html.encode("utf-8")
 
     def _send_text(self, text, include_body, content_type="text/plain; charset=utf-8"):
         body = text.encode("utf-8")
