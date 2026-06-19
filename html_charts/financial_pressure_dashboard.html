@@ -12,7 +12,7 @@
     --paper: #f7f4ee;
     --panel: #fffdf8;
     --teal: #2a9d8f;
-    --amber: #d98938;
+    --accent-blue: #8fc6df;
     --red: #c84f4f;
     --blue: #33658a;
 }
@@ -30,25 +30,29 @@ body {
 main { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 48px; }
 .status-panel {
     border: 1px solid var(--line);
-    border-top: 6px solid var(--amber);
+    border-top: 6px solid var(--accent-blue);
     background: var(--panel);
     padding: 26px;
     box-shadow: 0 18px 45px rgba(23, 32, 38, 0.08);
 }
 .status-label { margin: 0 0 8px; color: var(--muted); font: 700 12px/1.2 Verdana, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }
 .status-value { margin: 0; font-size: clamp(42px, 8vw, 86px); line-height: 0.92; }
-.status-pill { display: inline-block; margin-top: 16px; padding: 8px 12px; border-radius: 999px; background: #f5dfc5; color: #6f3d0b; font: 700 13px/1 Verdana, sans-serif; text-transform: uppercase; }
+.status-pill { display: inline-block; margin-top: 16px; padding: 8px 12px; border-radius: 999px; background: #dceff8; color: #22536a; font: 700 13px/1 Verdana, sans-serif; text-transform: uppercase; }
 .status-score { margin: 14px 0 0; font-size: 22px; color: var(--muted); }
 .status-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
 .metric-card { border: 1px solid var(--line); background: #ffffff; padding: 16px; min-height: 128px; }
-.metric-card span { display: block; min-height: 38px; color: var(--muted); font: 700 13px/1.35 Verdana, sans-serif; }
-.metric-card strong { display: block; margin: 10px 0 6px; font-size: 32px; line-height: 1; }
+.metric-card span { display: block; color: var(--muted); font: 700 13px/1.35 Verdana, sans-serif; }
+.metric-card p { margin: 8px 0 0; min-height: 42px; color: var(--muted); font: 13px/1.35 Verdana, sans-serif; }
+.metric-card strong { display: block; margin: 12px 0 6px; font-size: 32px; line-height: 1; }
 .metric-card em { color: var(--muted); font: normal 12px/1.4 Verdana, sans-serif; }
+.top-chart-row { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 22px; margin-top: 22px; }
+.top-chart-row .chart-section { margin-top: 0; }
 .chart-section, .accordion-panel { margin-top: 22px; border: 1px solid var(--line); background: var(--panel); padding: 18px; }
 h2 { margin: 0 0 12px; font-size: 24px; }
 h3 { margin: 0 0 10px; font-size: 18px; }
 iframe { width: 100%; border: 0; background: #ffffff; }
 .chart-section.compact iframe { height: 360px; }
+.chart-section.housing iframe { height: 360px; }
 .chart-section.standard iframe { height: 460px; }
 .chart-section.timeline iframe { height: 340px; }
 .accordion-panel > p { margin: -4px 0 16px; color: var(--muted); font: 14px/1.5 Verdana, sans-serif; }
@@ -61,9 +65,11 @@ summary { cursor: pointer; padding: 16px 4px; font: 700 17px/1.2 Verdana, sans-s
 @media (max-width: 860px) {
     .status-panel { padding: 18px; }
     .status-summary { grid-template-columns: 1fr; margin-top: 18px; }
+    .top-chart-row { grid-template-columns: 1fr; gap: 0; }
+    .top-chart-row .chart-section + .chart-section { margin-top: 22px; }
     main { width: min(100% - 20px, 1180px); padding-top: 12px; }
     .chart-section, .accordion-panel { padding: 12px; }
-    .chart-section.compact iframe, .chart-section.standard iframe, .chart-section.timeline iframe, .accordion-chart iframe { height: 420px; }
+    .chart-section.compact iframe, .chart-section.housing iframe, .chart-section.standard iframe, .chart-section.timeline iframe, .accordion-chart iframe { height: 420px; }
 }
 </style>
 </head>
@@ -78,24 +84,30 @@ summary { cursor: pointer; padding: 16px 4px; font: 700 17px/1.2 Verdana, sans-s
         </div>
         <div class="status-summary"><article class="metric-card">
         <span>Debt Service Ratio</span>
-        <strong>27.4</strong>
-        <em>11.32% as of 2025-10-01</em>
+        <p>Share of disposable income going to required household debt payments.</p>
+        <strong>11.32%</strong>
+        <em>Normalized pressure score: 27.4 as of 2025-10-01</em>
     </article><article class="metric-card">
         <span>Personal Saving Rate</span>
-        <strong>96.4</strong>
-        <em>2.60% as of 2026-04-01</em>
+        <p>How much income households are saving after spending and taxes.</p>
+        <strong>2.60%</strong>
+        <em>Normalized pressure score: 96.4 as of 2026-04-01</em>
     </article><article class="metric-card">
         <span>Credit Card Delinquency Rate</span>
-        <strong>32.6</strong>
-        <em>2.92% as of 2026-01-01</em>
+        <p>Share of credit card loans where borrowers are falling behind.</p>
+        <strong>2.92%</strong>
+        <em>Normalized pressure score: 32.6 as of 2026-01-01</em>
     </article></div>
     </section>
-    <section class="chart-section compact">
+    <div class="top-chart-row"><section class="chart-section compact">
         <h2>Normalized Financial Pressure Score</h2>
         <iframe src="normalized_financial_pressure_score.html" title="Normalized Financial Pressure Score" loading="lazy"></iframe>
-    </section><section class="chart-section standard">
-        <h2>Latest Pressure Percentiles Across Core and Context Indicators</h2>
-        <iframe src="latest_pressure_percentiles_core_context.html" title="Latest Pressure Percentiles Across Core and Context Indicators" loading="lazy"></iframe>
+    </section><section class="chart-section housing">
+        <h2>Housing Payment-to-Income Ratio</h2>
+        <iframe src="housing_affordability.html" title="Housing Payment-to-Income Ratio" loading="lazy"></iframe>
+    </section></div><section class="chart-section standard">
+        <h2>Latest Normalized Pressure Scores Across Core and Context Indicators</h2>
+        <iframe src="latest_pressure_percentiles_core_context.html" title="Latest Normalized Pressure Scores Across Core and Context Indicators" loading="lazy"></iframe>
     </section><section class="chart-section timeline">
         <h2>Core Household Stress Flags Timeline</h2>
         <iframe src="core_household_stress_flags_timeline.html" title="Core Household Stress Flags Timeline" loading="lazy"></iframe>
@@ -138,9 +150,6 @@ summary { cursor: pointer; padding: 16px 4px; font: 700 17px/1.2 Verdana, sans-s
         </div><div class="accordion-chart">
             <h3>Consumer Sentiment</h3>
             <iframe src="consumer_sentiment.html" title="Consumer Sentiment" loading="lazy"></iframe>
-        </div><div class="accordion-chart">
-            <h3>Housing Payment-to-Income Ratio</h3>
-            <iframe src="housing_affordability.html" title="Housing Payment-to-Income Ratio" loading="lazy"></iframe>
         </div></div>
     </details>
     </section>
