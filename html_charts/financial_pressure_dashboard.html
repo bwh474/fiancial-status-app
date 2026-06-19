@@ -6,13 +6,13 @@
 <title>U.S. Household Financial Pressure Dashboard</title>
 <style>
 :root {
-    --ink: #172026;
-    --muted: #5f6b73;
-    --line: #d8dee4;
-    --paper: #f7f4ee;
-    --panel: #fffdf8;
+    --ink: #222222;
+    --muted: #606975;
+    --line: #d9dde3;
+    --paper: #f6f7f9;
+    --panel: #ffffff;
     --teal: #2a9d8f;
-    --accent-blue: #8fc6df;
+    --accent-blue: #5b9bc8;
     --red: #c84f4f;
     --blue: #33658a;
 }
@@ -20,45 +20,40 @@
 body {
     margin: 0;
     color: var(--ink);
-    font-family: Georgia, 'Times New Roman', serif;
-    background:
-        linear-gradient(90deg, rgba(23,32,38,0.035) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(23,32,38,0.035) 1px, transparent 1px),
-        var(--paper);
-    background-size: 24px 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--paper);
 }
-main { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 48px; }
+main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 44px; }
 .status-panel {
     border: 1px solid var(--line);
-    border-top: 6px solid var(--accent-blue);
+    border-left: 5px solid var(--accent-blue);
     background: var(--panel);
-    padding: 26px;
-    box-shadow: 0 18px 45px rgba(23, 32, 38, 0.08);
+    padding: 22px;
 }
-.status-label { margin: 0 0 8px; color: var(--muted); font: 700 12px/1.2 Verdana, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }
-.status-value { margin: 0; font-size: clamp(42px, 8vw, 86px); line-height: 0.92; }
-.status-pill { display: inline-block; margin-top: 16px; padding: 8px 12px; border-radius: 999px; background: #dceff8; color: #22536a; font: 700 13px/1 Verdana, sans-serif; text-transform: uppercase; }
-.status-score { margin: 14px 0 0; font-size: 22px; color: var(--muted); }
-.status-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
-.metric-card { border: 1px solid var(--line); background: #ffffff; padding: 16px; min-height: 128px; }
-.metric-card span { display: block; color: var(--muted); font: 700 13px/1.35 Verdana, sans-serif; }
-.metric-card p { margin: 8px 0 0; min-height: 42px; color: var(--muted); font: 13px/1.35 Verdana, sans-serif; }
-.metric-card strong { display: block; margin: 12px 0 6px; font-size: 32px; line-height: 1; }
-.metric-card em { color: var(--muted); font: normal 12px/1.4 Verdana, sans-serif; }
-.top-chart-row { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 22px; margin-top: 22px; }
+.status-label { margin: 0 0 6px; color: var(--muted); font-size: 13px; font-weight: 600; }
+.status-value { margin: 0; font-size: clamp(34px, 5vw, 48px); line-height: 1.05; font-weight: 700; }
+.status-pill { display: inline-block; margin-top: 12px; padding: 6px 10px; border: 1px solid #b9d5e8; background: #eef7fc; color: #22536a; font-size: 13px; font-weight: 700; }
+.status-score { margin: 12px 0 0; font-size: 15px; color: var(--muted); }
+.status-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+.metric-card { border: 1px solid var(--line); background: #ffffff; padding: 14px; min-height: 122px; }
+.metric-card span { display: block; color: #2f3740; font-size: 13px; font-weight: 700; line-height: 1.35; }
+.metric-card p { margin: 7px 0 0; min-height: 42px; color: var(--muted); font-size: 13px; line-height: 1.4; }
+.metric-card strong { display: block; margin: 10px 0 5px; font-size: 28px; line-height: 1; }
+.metric-card em { color: var(--muted); font-size: 12px; font-style: normal; line-height: 1.4; }
+.top-chart-row { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 18px; margin-top: 18px; }
 .top-chart-row .chart-section { margin-top: 0; }
-.chart-section, .accordion-panel { margin-top: 22px; border: 1px solid var(--line); background: var(--panel); padding: 18px; }
-h2 { margin: 0 0 12px; font-size: 24px; }
-h3 { margin: 0 0 10px; font-size: 18px; }
+.chart-section, .accordion-panel { margin-top: 18px; border: 1px solid var(--line); background: var(--panel); padding: 16px; }
+h2 { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
+h3 { margin: 0 0 10px; font-size: 16px; font-weight: 700; }
 iframe { width: 100%; border: 0; background: #ffffff; }
 .chart-section.compact iframe { height: 360px; }
 .chart-section.housing iframe { height: 360px; }
 .chart-section.standard iframe { height: 460px; }
 .chart-section.timeline iframe { height: 340px; }
-.accordion-panel > p { margin: -4px 0 16px; color: var(--muted); font: 14px/1.5 Verdana, sans-serif; }
+.accordion-panel > p { margin: -4px 0 16px; color: var(--muted); font-size: 14px; line-height: 1.5; }
 .accordion-item { border-top: 1px solid var(--line); background: #ffffff; }
 .accordion-item:last-child { border-bottom: 1px solid var(--line); }
-summary { cursor: pointer; padding: 16px 4px; font: 700 17px/1.2 Verdana, sans-serif; }
+summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700; line-height: 1.2; }
 .accordion-body { display: grid; gap: 18px; padding: 0 0 18px; }
 .accordion-chart { border: 1px solid #e6eaee; padding: 14px; background: #fff; }
 .accordion-chart iframe { height: 340px; }
@@ -66,7 +61,7 @@ summary { cursor: pointer; padding: 16px 4px; font: 700 17px/1.2 Verdana, sans-s
     .status-panel { padding: 18px; }
     .status-summary { grid-template-columns: 1fr; margin-top: 18px; }
     .top-chart-row { grid-template-columns: 1fr; gap: 0; }
-    .top-chart-row .chart-section + .chart-section { margin-top: 22px; }
+    .top-chart-row .chart-section + .chart-section { margin-top: 18px; }
     main { width: min(100% - 20px, 1180px); padding-top: 12px; }
     .chart-section, .accordion-panel { padding: 12px; }
     .chart-section.compact iframe, .chart-section.housing iframe, .chart-section.standard iframe, .chart-section.timeline iframe, .accordion-chart iframe { height: 420px; }
