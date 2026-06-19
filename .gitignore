@@ -1,0 +1,31 @@
+# macOS
+.DS_Store
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# IDEs
+.idea/
+.vscode/
+
+# Jupyter temp files
+*.nbconvert.ipynb
+
+# Local/generated files
+*.log
+tmp/
+temp/
+
+# Optional: old generated chart clutter
+html_charts/archive_old_outputs/

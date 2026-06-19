@@ -1,0 +1,12 @@
+.DS_Store
+.idea/
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+html_charts/archive_old_outputs/
+data/
+visualizer.ipynb
+household_financial_pressure_report.md
+household_financial_pressure_report.docx
+~$*

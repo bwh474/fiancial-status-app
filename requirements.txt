@@ -1,0 +1,2 @@
+# This app serves pre-generated static HTML with the Python standard library.
+# The file is intentionally present so Heroku detects the Python buildpack.

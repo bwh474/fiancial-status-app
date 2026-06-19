@@ -1,0 +1,16 @@
+{
+  "name": "U.S. Household Financial Pressure Dashboard",
+  "description": "A static Heroku-hosted dashboard for visualizing U.S. household financial pressure from FRED data.",
+  "keywords": [
+    "python",
+    "heroku",
+    "dashboard",
+    "fred",
+    "data-visualization"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
