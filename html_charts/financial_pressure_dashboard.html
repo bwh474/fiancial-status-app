@@ -41,6 +41,7 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 44
 .metric-card strong { display: block; margin: 10px 0 5px; font-size: 28px; line-height: 1; }
 .metric-card em { color: var(--muted); font-size: 12px; font-style: normal; line-height: 1.4; }
 .chart-section, .accordion-panel { margin-top: 18px; border: 1px solid var(--line); background: var(--panel); padding: 16px; }
+.chart-section.standard, .chart-section.timeline { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 h2 { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
 .chart-note { margin: -4px 0 12px; color: var(--muted); font-size: 14px; line-height: 1.45; }
 h3 { margin: 0 0 10px; font-size: 16px; font-weight: 700; }
@@ -49,6 +50,7 @@ iframe { width: 100%; border: 0; background: #ffffff; }
 .chart-section.housing iframe { height: 360px; }
 .chart-section.standard iframe { height: 460px; }
 .chart-section.timeline iframe { height: 340px; }
+.chart-section.standard iframe, .chart-section.timeline iframe { min-width: 900px; }
 .accordion-panel > p { margin: -4px 0 16px; color: var(--muted); font-size: 14px; line-height: 1.5; }
 .accordion-item { border-top: 1px solid var(--line); background: #ffffff; }
 .accordion-item:last-child { border-bottom: 1px solid var(--line); }
@@ -61,7 +63,8 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
     .status-summary { grid-template-columns: 1fr; margin-top: 18px; }
     main { width: min(100% - 20px, 1180px); padding-top: 12px; }
     .chart-section, .accordion-panel { padding: 12px; }
-    .chart-section.compact iframe, .chart-section.housing iframe, .chart-section.standard iframe, .chart-section.timeline iframe, .accordion-chart iframe { height: 420px; }
+    .chart-section.compact iframe, .chart-section.housing iframe, .accordion-chart iframe { height: 420px; }
+    .chart-section.standard iframe, .chart-section.timeline iframe { height: 420px; min-width: 900px; }
 }
 </style>
 </head>
