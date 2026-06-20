@@ -42,6 +42,7 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 44
 .metric-card em { color: var(--muted); font-size: 12px; font-style: normal; line-height: 1.4; }
 .chart-section, .accordion-panel { margin-top: 18px; border: 1px solid var(--line); background: var(--panel); padding: 16px; }
 h2 { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
+.chart-note { margin: -4px 0 12px; color: var(--muted); font-size: 14px; line-height: 1.45; }
 h3 { margin: 0 0 10px; font-size: 16px; font-weight: 700; }
 iframe { width: 100%; border: 0; background: #ffffff; }
 .chart-section.compact iframe { height: 360px; }
@@ -91,19 +92,23 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
     </article></div>
     </section>
     <section class="chart-section compact">
-        <h2>Normalized Financial Pressure Score</h2>
+        <h2>Current Household Financial Pressure by Indicator</h2>
+        <p class="chart-note">Core household indicators ranked by their latest normalized pressure score, where 0 indicates low concern and 100 indicates high concern.</p>
         <iframe src="normalized_financial_pressure_score.html" title="Normalized Financial Pressure Score" loading="lazy"></iframe>
     </section><section class="chart-section standard">
-        <h2>Latest Normalized Pressure Scores Across Core and Context Indicators</h2>
+        <h2>Household Financial Pressure Scores Across All Indicators</h2>
+        <p class="chart-note">Latest normalized pressure scores across core and context indicators, showing which areas are contributing the most and least to household financial strain.</p>
         <iframe src="latest_pressure_percentiles_core_context.html" title="Latest Normalized Pressure Scores Across Core and Context Indicators" loading="lazy"></iframe>
     </section><section class="chart-section housing">
         <h2>Housing Payment-to-Income Ratio</h2>
         <iframe src="housing_affordability.html" title="Housing Payment-to-Income Ratio" loading="lazy"></iframe>
     </section><section class="chart-section timeline">
         <h2>Core Household Stress Flags Timeline</h2>
+        <p class="chart-note">Counts how many core household indicators reached unusually high-pressure readings relative to their own histories in each quarter. More flags mean more household stress signals were elevated at the same time.</p>
         <iframe src="core_household_stress_flags_timeline.html" title="Core Household Stress Flags Timeline" loading="lazy" data-sync-group="pressure-flags"></iframe>
     </section><section class="chart-section timeline">
         <h2>Expanded Household Pressure Flags Timeline</h2>
+        <p class="chart-note">Counts how many indicators across the full dashboard reached unusually high-pressure readings relative to their own histories in each quarter. More flags indicate broader financial strain across the household and economic environment.</p>
         <iframe src="expanded_household_pressure_flags_timeline.html" title="Expanded Household Pressure Flags Timeline" loading="lazy" data-sync-group="pressure-flags"></iframe>
     </section>
     <section class="accordion-panel">
