@@ -40,8 +40,6 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 44
 .metric-card p { margin: 7px 0 0; min-height: 42px; color: var(--muted); font-size: 13px; line-height: 1.4; }
 .metric-card strong { display: block; margin: 10px 0 5px; font-size: 28px; line-height: 1; }
 .metric-card em { color: var(--muted); font-size: 12px; font-style: normal; line-height: 1.4; }
-.top-chart-row { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 18px; margin-top: 18px; }
-.top-chart-row .chart-section { margin-top: 0; }
 .chart-section, .accordion-panel { margin-top: 18px; border: 1px solid var(--line); background: var(--panel); padding: 16px; }
 h2 { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
 h3 { margin: 0 0 10px; font-size: 16px; font-weight: 700; }
@@ -60,8 +58,6 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
 @media (max-width: 860px) {
     .status-panel { padding: 18px; }
     .status-summary { grid-template-columns: 1fr; margin-top: 18px; }
-    .top-chart-row { grid-template-columns: 1fr; gap: 0; }
-    .top-chart-row .chart-section + .chart-section { margin-top: 18px; }
     main { width: min(100% - 20px, 1180px); padding-top: 12px; }
     .chart-section, .accordion-panel { padding: 12px; }
     .chart-section.compact iframe, .chart-section.housing iframe, .chart-section.standard iframe, .chart-section.timeline iframe, .accordion-chart iframe { height: 420px; }
@@ -94,21 +90,21 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
         <em>Normalized pressure score: 32.6 as of 2026-01-01</em>
     </article></div>
     </section>
-    <div class="top-chart-row"><section class="chart-section compact">
+    <section class="chart-section compact">
         <h2>Normalized Financial Pressure Score</h2>
         <iframe src="normalized_financial_pressure_score.html" title="Normalized Financial Pressure Score" loading="lazy"></iframe>
+    </section><section class="chart-section standard">
+        <h2>Latest Normalized Pressure Scores Across Core and Context Indicators</h2>
+        <iframe src="latest_pressure_percentiles_core_context.html" title="Latest Normalized Pressure Scores Across Core and Context Indicators" loading="lazy"></iframe>
     </section><section class="chart-section housing">
         <h2>Housing Payment-to-Income Ratio</h2>
         <iframe src="housing_affordability.html" title="Housing Payment-to-Income Ratio" loading="lazy"></iframe>
-    </section></div><section class="chart-section standard">
-        <h2>Latest Normalized Pressure Scores Across Core and Context Indicators</h2>
-        <iframe src="latest_pressure_percentiles_core_context.html" title="Latest Normalized Pressure Scores Across Core and Context Indicators" loading="lazy"></iframe>
     </section><section class="chart-section timeline">
         <h2>Core Household Stress Flags Timeline</h2>
-        <iframe src="core_household_stress_flags_timeline.html" title="Core Household Stress Flags Timeline" loading="lazy"></iframe>
+        <iframe src="core_household_stress_flags_timeline.html" title="Core Household Stress Flags Timeline" loading="lazy" data-sync-group="pressure-flags"></iframe>
     </section><section class="chart-section timeline">
         <h2>Expanded Household Pressure Flags Timeline</h2>
-        <iframe src="expanded_household_pressure_flags_timeline.html" title="Expanded Household Pressure Flags Timeline" loading="lazy"></iframe>
+        <iframe src="expanded_household_pressure_flags_timeline.html" title="Expanded Household Pressure Flags Timeline" loading="lazy" data-sync-group="pressure-flags"></iframe>
     </section>
     <section class="accordion-panel">
         <h2>All Other Indicator Plots</h2>
@@ -149,5 +145,19 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
     </details>
     </section>
 </main>
+<script>
+(function() {
+    window.addEventListener("message", event => {
+        const message = event.data || {};
+        if (message.type !== "pressure-flags-x-domain") return;
+        if (!Array.isArray(message.domain) || message.domain.length !== 2) return;
+
+        document.querySelectorAll('iframe[data-sync-group="pressure-flags"]').forEach(frame => {
+            if (!frame.contentWindow || frame.contentWindow === event.source) return;
+            frame.contentWindow.postMessage(message, "*");
+        });
+    });
+})();
+</script>
 </body>
 </html>
