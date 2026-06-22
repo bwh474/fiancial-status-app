@@ -41,6 +41,14 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 44
 .metric-card p { margin: 7px 0 0; min-height: 54px; color: var(--muted); font-size: 13px; line-height: 1.4; }
 .metric-card strong { display: block; margin: 10px 0 5px; font-size: 24px; line-height: 1.05; }
 .metric-card em { color: var(--muted); font-size: 12px; font-style: normal; line-height: 1.4; }
+.index-panel { margin-top: 18px; border: 1px solid var(--line); background: var(--panel); padding: 16px; }
+.index-panel h2 { margin-bottom: 8px; }
+.index-panel > p { margin: 0 0 12px; color: var(--muted); font-size: 14px; line-height: 1.45; }
+.index-driver-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.index-driver-card { border: 1px solid #e6eaee; background: #fff; padding: 12px; }
+.index-driver-card h3 { margin: 0 0 6px; color: #2f3740; font-size: 15px; line-height: 1.25; }
+.index-driver-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.38; }
+.index-driver-card em { display: block; margin-top: 8px; color: #47515d; font-size: 12px; font-style: normal; line-height: 1.35; }
 .chart-section, .accordion-panel { margin-top: 18px; border: 1px solid var(--line); background: var(--panel); padding: 16px; }
 .chart-section.timeline { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 h2 { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
@@ -60,8 +68,9 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
 @media (max-width: 860px) {
     .status-panel { padding: 18px; }
     .status-summary { grid-template-columns: 1fr; margin-top: 18px; }
+    .index-driver-grid { grid-template-columns: 1fr; }
     main { width: min(100% - 20px, 1180px); padding-top: 12px; }
-    .chart-section, .accordion-panel { padding: 12px; }
+    .index-panel, .chart-section, .accordion-panel { padding: 12px; }
     .chart-section.compact iframe, .chart-section.housing iframe, .accordion-chart iframe { height: 420px; }
     .chart-section.timeline iframe { height: 470px; min-width: 900px; }
 }
@@ -77,23 +86,56 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
             <p class="status-score">Based on each indicator's latest available FRED observation.</p>
         </div>
         <div class="status-summary"><article class="metric-card">
-        <span>Biggest household strain signal</span>
+        <span>Biggest pressure driver</span>
         <h3>Consumer Sentiment</h3>
-        <p>Household confidence signal; weaker sentiment points to broader strain.</p>
+        <p>Household confidence about the economy; lower sentiment signals broader strain.</p>
         <strong>49.8 index</strong>
         <em>Pressure score: 99.9 / 100<br>Latest observation: 2026-04-01</em>
     </article><article class="metric-card">
         <span>Broadest household strain signal</span>
         <h3>Housing Payment-to-Income Ratio</h3>
-        <p>Estimated mortgage payment burden relative to median household income.</p>
+        <p>Estimated mortgage payment burden relative to household income.</p>
         <strong>28.04%</strong>
         <em>Pressure score: 91.1 / 100<br>Latest observation: 2026-03-31</em>
     </article><article class="metric-card">
         <span>Lowest current pressure signal</span>
         <h3>Real Median Weekly Earnings</h3>
-        <p>Inflation-adjusted wage signal; weaker real earnings increase pressure.</p>
+        <p>Inflation-adjusted worker earnings; lower real earnings mean more pressure.</p>
         <strong>$376</strong>
         <em>Pressure score: 1.1 / 100<br>Latest observation: 2026-01-01</em>
+    </article></div>
+    </section>
+    <section class="index-panel">
+        <h2>What’s in the index?</h2>
+        <p>The household financial pressure index is built from seven drivers. Each driver is converted into a normalized 0-100 pressure score based on its own history, so higher scores mean the latest reading is more concerning for that series.</p>
+        <div class="index-driver-grid"><article class="index-driver-card">
+        <h3>Debt Service Ratio</h3>
+        <p>Share of disposable income going to required household debt payments.</p>
+        <em>Higher values indicate higher pressure.</em>
+    </article><article class="index-driver-card">
+        <h3>Personal Saving Rate</h3>
+        <p>How much income households save after spending and taxes; lower saving means more pressure.</p>
+        <em>Lower values indicate higher pressure.</em>
+    </article><article class="index-driver-card">
+        <h3>Credit Card Delinquency Rate</h3>
+        <p>Share of credit card loans where borrowers are falling behind.</p>
+        <em>Higher values indicate higher pressure.</em>
+    </article><article class="index-driver-card">
+        <h3>CPI YoY Inflation</h3>
+        <p>Year-over-year cost-of-living pressure.</p>
+        <em>Higher values indicate higher pressure.</em>
+    </article><article class="index-driver-card">
+        <h3>Real Median Weekly Earnings</h3>
+        <p>Inflation-adjusted worker earnings; lower real earnings mean more pressure.</p>
+        <em>Lower values indicate higher pressure.</em>
+    </article><article class="index-driver-card">
+        <h3>Consumer Sentiment</h3>
+        <p>Household confidence about the economy; lower sentiment signals broader strain.</p>
+        <em>Lower values indicate higher pressure.</em>
+    </article><article class="index-driver-card">
+        <h3>Housing Payment-to-Income Ratio</h3>
+        <p>Estimated mortgage payment burden relative to household income.</p>
+        <em>Higher values indicate higher pressure.</em>
     </article></div>
     </section>
     <section class="chart-section compact">
