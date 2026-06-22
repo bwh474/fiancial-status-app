@@ -30,8 +30,14 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 44
     background: var(--panel);
     padding: 22px;
 }
-.status-label { margin: 0 0 6px; color: var(--muted); font-size: 13px; font-weight: 600; }
-.status-value { margin: 0; font-size: clamp(34px, 5vw, 48px); line-height: 1.05; font-weight: 700; }
+# .status-label { margin: 0 0 6px; color: var(--muted); font-size: 13px; font-weight: 600; }
+.status-label {
+    margin: 0 0 8px;
+    color: var(--muted);
+    font-size: 45px;
+    font-weight: 700;
+}
+.status-value { margin: 0; font-size: clamp(34px, 5vw, 36px); line-height: 1.05; font-weight: 700; }
 .status-pill { display: inline-block; margin-top: 12px; padding: 6px 10px; border: 1px solid #b9d5e8; background: #eef7fc; color: #22536a; font-size: 13px; font-weight: 700; }
 .status-score { margin: 12px 0 0; font-size: 15px; color: var(--muted); }
 .status-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
@@ -106,7 +112,7 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
     </article></div>
     </section>
     <section class="index-panel">
-        <h2>What’s in the index?</h2>
+        <h2>What’s in the household finacial pressure index?</h2>
         <p>The household financial pressure index is built from seven drivers. Each driver is converted into a normalized 0-100 pressure score based on its own history, so higher scores mean the latest reading is more concerning for that series.</p>
         <div class="index-driver-grid"><article class="index-driver-card">
         <h3>Debt Service Ratio</h3>
