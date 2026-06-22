@@ -55,8 +55,8 @@ iframe { width: 100%; border: 0; background: #ffffff; }
 .accordion-item:last-child { border-bottom: 1px solid var(--line); }
 summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700; line-height: 1.2; }
 .accordion-body { display: grid; gap: 18px; padding: 0 0 18px; }
-.accordion-chart { border: 1px solid #e6eaee; padding: 14px; background: #fff; }
-.accordion-chart iframe { height: 340px; }
+.accordion-chart { border: 1px solid #e6eaee; padding: 14px; background: #fff; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.accordion-chart iframe { height: 380px; min-width: 900px; }
 @media (max-width: 860px) {
     .status-panel { padding: 18px; }
     .status-summary { grid-template-columns: 1fr; margin-top: 18px; }
@@ -77,7 +77,7 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
             <p class="status-score">Based on each indicator's latest available FRED observation.</p>
         </div>
         <div class="status-summary"><article class="metric-card">
-        <span>Biggest pressure driver</span>
+        <span>Biggest household strain signal</span>
         <h3>Consumer Sentiment</h3>
         <p>Household confidence signal; weaker sentiment points to broader strain.</p>
         <strong>49.8 index</strong>
@@ -110,10 +110,10 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
         <iframe src="housing_affordability.html" title="Housing Payment-to-Income Ratio" loading="lazy"></iframe>
     </section>
     <section class="accordion-panel">
-        <h2>Supporting and Source Plots</h2>
-        <p>Open a section to inspect the individual source charts behind the index and context views.</p>
+        <h2>Individual Source Charts</h2>
+        <p>Open the accordion to inspect the individual source series behind the index and supporting context.</p>
         <details class="accordion-item">
-        <summary>Household Pressure Indicator Time Series</summary>
+        <summary>Individual Indicator Source Charts</summary>
         <div class="accordion-body"><div class="accordion-chart">
             <h3>Debt Service Ratio</h3>
             <iframe src="debt_service_ratio.html" title="Debt Service Ratio" loading="lazy"></iframe>
@@ -132,10 +132,7 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
         </div><div class="accordion-chart">
             <h3>Consumer Sentiment</h3>
             <iframe src="consumer_sentiment.html" title="Consumer Sentiment" loading="lazy"></iframe>
-        </div></div>
-    </details><details class="accordion-item">
-        <summary>Supporting Economic Context</summary>
-        <div class="accordion-body"><div class="accordion-chart">
+        </div><div class="accordion-chart">
             <h3>Unemployment Rate</h3>
             <iframe src="unemployment_rate.html" title="Unemployment Rate" loading="lazy"></iframe>
         </div><div class="accordion-chart">
