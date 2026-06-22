@@ -35,22 +35,21 @@ main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 44
 .status-pill { display: inline-block; margin-top: 12px; padding: 6px 10px; border: 1px solid #b9d5e8; background: #eef7fc; color: #22536a; font-size: 13px; font-weight: 700; }
 .status-score { margin: 12px 0 0; font-size: 15px; color: var(--muted); }
 .status-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
-.metric-card { border: 1px solid var(--line); background: #ffffff; padding: 14px; min-height: 122px; }
+.metric-card { border: 1px solid var(--line); background: #ffffff; padding: 14px; min-height: 174px; }
 .metric-card span { display: block; color: #2f3740; font-size: 13px; font-weight: 700; line-height: 1.35; }
-.metric-card p { margin: 7px 0 0; min-height: 42px; color: var(--muted); font-size: 13px; line-height: 1.4; }
-.metric-card strong { display: block; margin: 10px 0 5px; font-size: 28px; line-height: 1; }
+.metric-card h3 { margin: 8px 0 0; font-size: 17px; line-height: 1.2; }
+.metric-card p { margin: 7px 0 0; min-height: 54px; color: var(--muted); font-size: 13px; line-height: 1.4; }
+.metric-card strong { display: block; margin: 10px 0 5px; font-size: 24px; line-height: 1.05; }
 .metric-card em { color: var(--muted); font-size: 12px; font-style: normal; line-height: 1.4; }
 .chart-section, .accordion-panel { margin-top: 18px; border: 1px solid var(--line); background: var(--panel); padding: 16px; }
-.chart-section.standard, .chart-section.timeline { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.chart-section.timeline { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 h2 { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
 .chart-note { margin: -4px 0 12px; color: var(--muted); font-size: 14px; line-height: 1.45; }
 h3 { margin: 0 0 10px; font-size: 16px; font-weight: 700; }
 iframe { width: 100%; border: 0; background: #ffffff; }
 .chart-section.compact iframe { height: 400px; }
 .chart-section.housing iframe { height: 360px; }
-.chart-section.standard iframe { height: 520px; }
-.chart-section.timeline iframe { height: 400px; }
-.chart-section.standard iframe, .chart-section.timeline iframe { min-width: 900px; }
+.chart-section.timeline iframe { height: 400px; min-width: 900px; }
 .accordion-panel > p { margin: -4px 0 16px; color: var(--muted); font-size: 14px; line-height: 1.5; }
 .accordion-item { border-top: 1px solid var(--line); background: #ffffff; }
 .accordion-item:last-child { border-bottom: 1px solid var(--line); }
@@ -64,7 +63,7 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
     main { width: min(100% - 20px, 1180px); padding-top: 12px; }
     .chart-section, .accordion-panel { padding: 12px; }
     .chart-section.compact iframe, .chart-section.housing iframe, .accordion-chart iframe { height: 420px; }
-    .chart-section.standard iframe, .chart-section.timeline iframe { height: 470px; min-width: 900px; }
+    .chart-section.timeline iframe { height: 470px; min-width: 900px; }
 }
 </style>
 </head>
@@ -72,54 +71,49 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
 <main>
     <section class="status-panel">
         <div>
-            <p class="status-label">Current household pressure status</p>
+            <p class="status-label">Current household financial pressure index</p>
             <h1 class="status-value">Moderate/Mixed</h1>
-            <span class="status-pill moderate-mixed">52.1 / 100</span>
-            <p class="status-score">Core score through 2026-04-01.</p>
+            <span class="status-pill moderate-mixed">60.2 / 100</span>
+            <p class="status-score">Based on each indicator's latest available FRED observation.</p>
         </div>
         <div class="status-summary"><article class="metric-card">
-        <span>Debt Service Ratio</span>
-        <p>Share of disposable income going to required household debt payments.</p>
-        <strong>11.32%</strong>
-        <em>Normalized pressure score: 27.4 as of 2025-10-01</em>
+        <span>Biggest pressure driver</span>
+        <h3>Consumer Sentiment</h3>
+        <p>Household confidence signal; weaker sentiment points to broader strain.</p>
+        <strong>49.8 index</strong>
+        <em>Pressure score: 99.9 / 100<br>Latest observation: 2026-04-01</em>
     </article><article class="metric-card">
-        <span>Personal Saving Rate</span>
-        <p>How much income households are saving after spending and taxes.</p>
-        <strong>2.60%</strong>
-        <em>Normalized pressure score: 96.4 as of 2026-04-01</em>
+        <span>Broadest household strain signal</span>
+        <h3>Housing Payment-to-Income Ratio</h3>
+        <p>Estimated mortgage payment burden relative to median household income.</p>
+        <strong>28.04%</strong>
+        <em>Pressure score: 91.1 / 100<br>Latest observation: 2026-03-31</em>
     </article><article class="metric-card">
-        <span>Credit Card Delinquency Rate</span>
-        <p>Share of credit card loans where borrowers are falling behind.</p>
-        <strong>2.92%</strong>
-        <em>Normalized pressure score: 32.6 as of 2026-01-01</em>
+        <span>Lowest current pressure signal</span>
+        <h3>Real Median Weekly Earnings</h3>
+        <p>Inflation-adjusted wage signal; weaker real earnings increase pressure.</p>
+        <strong>$376</strong>
+        <em>Pressure score: 1.1 / 100<br>Latest observation: 2026-01-01</em>
     </article></div>
     </section>
     <section class="chart-section compact">
-        <h2>Current Household Financial Pressure by Indicator</h2>
-        <p class="chart-note">Core household indicators ranked by their latest normalized pressure score, where 0 indicates low concern and 100 indicates high concern.</p>
-        <iframe src="normalized_financial_pressure_score.html" title="Current Household Financial Pressure by Indicator" loading="lazy"></iframe>
-    </section><section class="chart-section standard">
-        <h2>Household Financial Pressure Scores Across All Indicators</h2>
-        <p class="chart-note">Latest normalized pressure scores across core and context indicators, showing which areas are contributing the most and least to household financial strain.</p>
-        <iframe src="latest_pressure_percentiles_core_context.html" title="Household Financial Pressure Scores Across All Indicators" loading="lazy"></iframe>
+        <h2>Current Pressure Drivers</h2>
+        <p class="chart-note">Shows the 7 household pressure indicators ranked by their latest normalized pressure score. Higher scores mean the latest reading is more concerning relative to that indicator's own history.</p>
+        <iframe src="normalized_financial_pressure_score.html" title="Current Pressure Drivers" loading="lazy"></iframe>
+    </section><section class="chart-section timeline">
+        <h2>Historical Household Pressure Flags</h2>
+        <p class="chart-note">Counts how many of the 7 household pressure indicators were elevated relative to their own histories in each quarter.</p>
+        <iframe src="expanded_household_pressure_flags_timeline.html" title="Historical Household Pressure Flags" loading="lazy"></iframe>
     </section><section class="chart-section housing">
         <h2>Housing Payment-to-Income Ratio</h2>
         
         <iframe src="housing_affordability.html" title="Housing Payment-to-Income Ratio" loading="lazy"></iframe>
-    </section><section class="chart-section timeline">
-        <h2>Core Household Stress Flags Timeline</h2>
-        <p class="chart-note">Counts how many core household indicators reached unusually high-pressure readings relative to their own histories in each quarter. More flags mean more household stress signals were elevated at the same time.</p>
-        <iframe src="core_household_stress_flags_timeline.html" title="Core Household Stress Flags Timeline" loading="lazy" data-sync-group="pressure-flags"></iframe>
-    </section><section class="chart-section timeline">
-        <h2>Expanded Household Pressure Flags Timeline</h2>
-        <p class="chart-note">Counts how many indicators across the full dashboard reached unusually high-pressure readings relative to their own histories in each quarter. More flags indicate broader financial strain across the household and economic environment.</p>
-        <iframe src="expanded_household_pressure_flags_timeline.html" title="Expanded Household Pressure Flags Timeline" loading="lazy" data-sync-group="pressure-flags"></iframe>
     </section>
     <section class="accordion-panel">
-        <h2>All Other Indicator Plots</h2>
-        <p>Open a section to inspect the individual source charts behind the score and context views.</p>
+        <h2>Supporting and Source Plots</h2>
+        <p>Open a section to inspect the individual source charts behind the index and context views.</p>
         <details class="accordion-item">
-        <summary>Core Household Indicator Time Series</summary>
+        <summary>Household Pressure Indicator Time Series</summary>
         <div class="accordion-body"><div class="accordion-chart">
             <h3>Debt Service Ratio</h3>
             <iframe src="debt_service_ratio.html" title="Debt Service Ratio" loading="lazy"></iframe>
@@ -129,19 +123,7 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
         </div><div class="accordion-chart">
             <h3>Credit Card Delinquency Rate</h3>
             <iframe src="credit_card_delinquency_rate.html" title="Credit Card Delinquency Rate" loading="lazy"></iframe>
-        </div></div>
-    </details><details class="accordion-item">
-        <summary>Economic Context Indicators</summary>
-        <div class="accordion-body"><div class="accordion-chart">
-            <h3>Unemployment Rate</h3>
-            <iframe src="unemployment_rate.html" title="Unemployment Rate" loading="lazy"></iframe>
         </div><div class="accordion-chart">
-            <h3>Federal Funds Rate</h3>
-            <iframe src="federal_funds_rate.html" title="Federal Funds Rate" loading="lazy"></iframe>
-        </div></div>
-    </details><details class="accordion-item">
-        <summary>Additional Household Pressure Context</summary>
-        <div class="accordion-body"><div class="accordion-chart">
             <h3>CPI Year-over-Year Inflation</h3>
             <iframe src="inflation_cpi_yoy.html" title="CPI Year-over-Year Inflation" loading="lazy"></iframe>
         </div><div class="accordion-chart">
@@ -151,22 +133,17 @@ summary { cursor: pointer; padding: 14px 4px; font-size: 15px; font-weight: 700;
             <h3>Consumer Sentiment</h3>
             <iframe src="consumer_sentiment.html" title="Consumer Sentiment" loading="lazy"></iframe>
         </div></div>
+    </details><details class="accordion-item">
+        <summary>Supporting Economic Context</summary>
+        <div class="accordion-body"><div class="accordion-chart">
+            <h3>Unemployment Rate</h3>
+            <iframe src="unemployment_rate.html" title="Unemployment Rate" loading="lazy"></iframe>
+        </div><div class="accordion-chart">
+            <h3>Federal Funds Rate</h3>
+            <iframe src="federal_funds_rate.html" title="Federal Funds Rate" loading="lazy"></iframe>
+        </div></div>
     </details>
     </section>
 </main>
-<script>
-(function() {
-    window.addEventListener("message", event => {
-        const message = event.data || {};
-        if (message.type !== "pressure-flags-x-domain") return;
-        if (!Array.isArray(message.domain) || message.domain.length !== 2) return;
-
-        document.querySelectorAll('iframe[data-sync-group="pressure-flags"]').forEach(frame => {
-            if (!frame.contentWindow || frame.contentWindow === event.source) return;
-            frame.contentWindow.postMessage(message, "*");
-        });
-    });
-})();
-</script>
 </body>
 </html>
